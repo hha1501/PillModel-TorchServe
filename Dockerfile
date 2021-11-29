@@ -14,9 +14,9 @@ COPY ./requirements.txt /home/model-server/
 # Install torch and torchserve
 RUN pip install -r /home/model-server/requirements.txt
 
-COPY ./src/mnist.py /home/model-server/
-COPY ./src/mnist_handler.py /home/model-server/
-COPY ./src/mnist_cnn.pt /home/model-server
+COPY ./src/models/mnist.py /home/model-server/
+COPY ./src/handler/mnist_handler.py /home/model-server/
+COPY ./src/pretrain/mnist_cnn.pt /home/model-server
 COPY ./src/config.properties /home/model-server/
 COPY ./src/sh/init_server.sh /home/model-server/
 COPY ./src/sh/create_and_add_model.sh /home/model-server/
@@ -24,9 +24,7 @@ COPY ./src/sh/run.sh /home/model-server/
 COPY ./src/test_data /home/model-server/
 
 # Prepare to start server
-RUN chmod +x /home/model-server/run.sh
 RUN chmod +x /home/model-server/init_server.sh
-RUN chmod +x /home/model-server/create_and_add_model.sh
 
 EXPOSE 8080 8081 8082
 
