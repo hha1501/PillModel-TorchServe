@@ -20,7 +20,7 @@ RUN mkdir /home/model-server/models
 
 COPY ./models/pt_files/. /home/model-server/pretrain/
 COPY ./fimi-torch-serve/src/handler/. /home/model-server/handler/
-COPY ./base-model-updater/models/EncoderDecoder/. /home/model-server/models/
+COPY ./base-model-updater/models/EncoderDecoder/*.py /home/model-server/models/
 COPY ./fimi-torch-serve/src/config.properties /home/model-server/
 COPY ./fimi-torch-serve/src/sh/init_server.sh /home/model-server/
  
