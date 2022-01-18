@@ -1,12 +1,12 @@
 version: "3.8"
 services:
-  torch-serve:
-    container_name: torch-serve
-    image: torch_serve:latest
+  torch-serve-pill:
+    container_name: torch-serve-pill
+    image: torch_serve_pill:latest
     ports:
-      - 9083:8080
-      - 9084:8081
-      - 9085:8082
+      - 8280:8080
+      - 8281:8081
+      - 8282:8082
     volumes:
       - ./src/logs:/home/model-server/logs
     

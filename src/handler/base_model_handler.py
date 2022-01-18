@@ -23,7 +23,6 @@ class BasePredictDailyHandler(BaseHandler):
         # print(data)
         file = data[0]['body']
         # file = json.load(file)
-        print(f'FILE: {file}')
         test_data = file['test_data']
         
         test_ls = []

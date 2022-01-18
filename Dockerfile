@@ -9,7 +9,7 @@ RUN mkdir /home/model-server
 RUN mkdir /home/model-server/model_store
 
 # Copy file
-COPY ./fimi-torch-serve/requirements.txt /home/model-server/
+COPY requirements.txt /home/model-server/
 
 # Install torch and torchserve
 RUN pip install -r /home/model-server/requirements.txt
@@ -17,20 +17,19 @@ RUN mkdir /home/model-server/pretrain
 RUN mkdir /home/model-server/handler
 RUN mkdir /home/model-server/models 
 
-
-COPY ./models/pt_files/. /home/model-server/pretrain/
-COPY ./fimi-torch-serve/src/handler/. /home/model-server/handler/
-COPY ./base-model-updater/models/EncoderDecoder/*.py /home/model-server/models/
-COPY ./fimi-torch-serve/src/config.properties /home/model-server/
-COPY ./fimi-torch-serve/src/sh/init_server.sh /home/model-server/
+COPY src/checkpoints/. /home/model-server/pretrain/
+COPY src/handler/. /home/model-server/handler/
+COPY src/models/*.py /home/model-server/models/
+COPY src/config.properties /home/model-server/
+COPY src/sh/run_server.sh /home/model-server/
  
 # Prepare to start server
-RUN chmod +x /home/model-server/init_server.sh
+RUN chmod +x /home/model-server/run_server.sh
 
 EXPOSE 8080 8081 8082
 
 WORKDIR /home/model-server/
 
 # Start server and insert model
-ENTRYPOINT ["./init_server.sh"]
+ENTRYPOINT ["./run_server.sh"]
 CMD [ "serve"]
