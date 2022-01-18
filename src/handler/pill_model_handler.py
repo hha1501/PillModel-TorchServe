@@ -26,7 +26,13 @@ class PillClassifier(ImageClassifier):
         Returns:
             list : A list of dictionaries with predictions and explanations is returned
         """
-        return data.argmax(1).tolist()
+        labels = data.argmax(1).tolist()
+
+        with open('home/model-server/index_to_name.json', 'r') as f:
+            class_names = json.load(open('home/model-server/index_to_name.json', 'r'))
+            class_name = class_names[labels[0]]
+
+        return labels, class_name
 
     def preprocess(self, data):
         """
@@ -40,7 +46,7 @@ class PillClassifier(ImageClassifier):
             tensor: Returns the tensor data of the input
         """
         # print('HJHJHJHJ')
-        print(data)
+        # print(data)
         file = data[0]['body']
         file = json.loads(file)
         # print(f'FILE: {file}')
