@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #5256ad;
+}
+
+.drag-area-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.drag-area {
+    border: 2px dashed #fff;
+    height: 500px;
+    width: 700px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.drag-area-active-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.drag-area.active {
+    border: 2px solid #fff;
+}
+
+.drag-area .icon {
+    font-size: 100px;
+    color: #fff;
+}
+
+.drag-area header {
+    font-size: 30px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.drag-area span {
+    font-size: 25px;
+    font-weight: 500;
+    color: #fff;
+    margin: 10px 0 15px 0;
+}
+
+.drag-area button {
+    padding: 10px 25px;
+    font-size: 20px;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    background: #fff;
+    color: #5256ad;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.drag-area img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.drag-area-image-container {
+    width: 100%;
+    height: 100%;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.clear-button {
+    margin-top: 2em;
+    align-self: center;
+    width: 100px;
+}
+
+.root-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.classification-result-container {
+    margin-left: 4em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.classification-result-container table {
+    width: 800px;
+}
+
+.classification-result-container tr td:first-child {
+    font-weight: bold;
+}
+
+.classification-result-container table td {
+    margin: 1em;
+    padding: 1.5em;
+}
+
+.classification-result-container table td {
+    border: 1px solid black;
+}
+
+.classification-result-container table {
+    color: #FFBD35;
+}
+
+.classification-pill-label {
+    font-size: 3em;
+    color: #3FA796;
+}

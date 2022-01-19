@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duy COn</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <script src="script.js" type="module" defer></script>
+</head>
+
+<body>
+    <div class="root-container">
+        <div class="drag-area-container">
+            <div class="drag-area">
+                <div class="drag-area-active-container">
+                    <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <header>Drag & Drop to Upload File</header>
+                    <span>OR</span>
+                    <button>Browse File</button>
+                    <input type="file" hidden>
+                </div>
+                <div class="drag-area-image-container hidden">
+                    <img class="drag-area-image" alt="image">
+                </div>
+            </div>
+            <button class="clear-button">Clear</button>
+        </div>
+        <div class="classification-result-container hidden">
+            <h2 class="classification-pill-label"></h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Group</td>
+                        <td>
+                            <div class="classification-pill-group"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ingredients</td>
+                        <td>
+                            <div class="classification-pill-ingredients"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Usage</td>
+                        <td>
+                            <div class="classification-pill-usage"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Registration Number</td>
+                        <td>
+                            <div class="classification-pill-registration-number"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
