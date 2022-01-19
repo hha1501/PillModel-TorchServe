@@ -3,6 +3,8 @@ from ts.torch_handler.image_classifier import ImageClassifier
 import torch
 import numpy as np
 import json
+import base64
+import cv2
 
 class PillClassifier(ImageClassifier):
     """
@@ -13,6 +15,10 @@ class PillClassifier(ImageClassifier):
     def __init__(self):
         super().__init__()
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        
+        with open('/home/model-server/pretrain/graph_data.json', 'r') as f:
+            graph_data_json = json.load(f)
+            self.graph_data = np.array(graph_data_json['graph'], dtype=np.float32)
 
     image_processing = transforms.Compose([transforms.Resize((224, 224)),
                                         transforms.ToTensor(),
@@ -26,13 +32,17 @@ class PillClassifier(ImageClassifier):
         Returns:
             list : A list of dictionaries with predictions and explanations is returned
         """
-        labels = data.argmax(1).tolist()
+        pill_ids = data.argmax(1).tolist()
+        result = []
 
-        with open('home/model-server/index_to_name.json', 'r') as f:
-            class_names = json.load(open('home/model-server/index_to_name.json', 'r'))
-            class_name = class_names[labels[0]]
+        with open('/home/model-server/pretrain/index_to_name.json', 'r') as f:
+            class_names = json.load(f)
+            result = [{ "pill_id": pill_id,
+                        "pill_label": class_names[str(pill_id)]
+                      } for pill_id in pill_ids]
 
-        return labels, class_name
+        print(result)
+        return result
 
     def preprocess(self, data):
         """
@@ -50,11 +60,13 @@ class PillClassifier(ImageClassifier):
         file = data[0]['body']
         file = json.loads(file)
         # print(f'FILE: {file}')
-        image = file['image']
-        graph = file['graph']
-        
-        image = np.array(image, dtype=np.float32)
-        graph = np.array(graph, dtype=np.float32)
+  
+        base64_image_blob = np.fromstring(base64.b64decode(file['image']), np.uint8)
+        image = cv2.imdecode(base64_image_blob, cv2.IMREAD_COLOR)
+        image = np.transpose(image).astype(np.float32) / 255
+        print(f'Image shape: {image.shape}')
+
+        graph = self.graph_data
 
         img_tensor = torch.from_numpy(image).unsqueeze(0).to(self.device)
         graph_tensor = torch.from_numpy(graph).to(self.device)

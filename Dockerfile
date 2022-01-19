@@ -22,7 +22,6 @@ COPY src/handler/. /home/model-server/handler/
 COPY src/models/*.py /home/model-server/models/
 COPY src/config.properties /home/model-server/
 COPY src/sh/run_server.sh /home/model-server/
-COPY src/checkpoints/index_to_name.json /home/model-server/
  
 # Prepare to start server
 RUN chmod +x /home/model-server/run_server.sh
