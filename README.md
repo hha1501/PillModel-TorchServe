@@ -15,7 +15,7 @@
     - sh: Bash file on running dockerfile 
     - logs: Logging of model
 ## Installation 
-docker build -t torch_serve:latest .
+docker build -t torch_serve_pill:latest .
 
 docker-compose -f torchserve.compose.yml up -d
 
